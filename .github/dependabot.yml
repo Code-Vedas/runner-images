@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/images/cpp-runner"
     schedule:
       interval: "weekly"
   - package-ecosystem: "github-actions"

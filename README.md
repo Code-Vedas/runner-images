@@ -1,15 +1,25 @@
-# C++ Runner image for CI/CD
+# Runner Images
 
-This image is based on the [C++ Docker image](https://hub.docker.com/_/gcc) and adds the following tools:
+This repository houses container images used by Code Vedas CI/CD pipelines.
+
+Each image lives in its own directory under `images/` so the repository can grow beyond a single runner image.
+
+## Available Images
+
+### `cpp-runner`
+
+Path: `images/cpp-runner`
+
+This image is based on the [C++ Docker image](https://hub.docker.com/_/gcc) and adds:
 - [CMake](https://cmake.org/)
 - [Catch2](https://github.com/catchorg/Catch2)
 - [gcovr](https://gcovr.com/en/stable/)
 
-The image is intended to be used in CI/CD pipelines for C++ projects.
+It is intended for CI/CD pipelines for C++ projects.
 
 ## Usage
 
-The image is available on ghcr.io and can be used in GitHub Actions workflows like this:
+Published images are available on `ghcr.io/code-vedas/<image-name>` and can be used in GitHub Actions workflows like this:
 
 ```yaml
 jobs:
@@ -22,25 +32,41 @@ jobs:
 
 ## Development
 
-To build the image locally, run the following command:
+To build the C++ runner image locally:
 
 ```bash
-docker build -t cpp-runner .
+docker build -t cpp-runner images/cpp-runner
 ```
 
 ### Building with specific versions
 
-The image automatically uses the latest releases of CMake and Catch2 when built through GitHub Actions. For local builds, you can specify versions using build arguments:
+The publish workflow fetches the latest releases of CMake and Catch2 for `cpp-runner`. For local builds, you can override versions with build args:
 
 ```bash
 # Build with specific versions
-docker build --build-arg CMAKE_VERSION=v3.29.0 --build-arg CATCH2_VERSION=v3.7.1 -t cpp-runner .
+docker build \
+  --build-arg CMAKE_VERSION=v3.29.0 \
+  --build-arg CATCH2_VERSION=v3.7.1 \
+  -t cpp-runner \
+  images/cpp-runner
 
-# Build with default versions (same as just docker build -t cpp-runner .)
-docker build --build-arg CMAKE_VERSION=v4.0.3 --build-arg CATCH2_VERSION=v3.8.1 -t cpp-runner .
+# Build with explicit default versions
+docker build \
+  --build-arg CMAKE_VERSION=v4.0.3 \
+  --build-arg CATCH2_VERSION=v3.8.1 \
+  -t cpp-runner \
+  images/cpp-runner
 ```
 
-The GitHub Actions workflow automatically fetches and uses the latest released versions of both dependencies.
+## Repository Layout
+
+```text
+images/
+  cpp-runner/
+    Dockerfile
+```
+
+The GitHub Actions workflow is structured to publish one or more images from this repository. Add new image directories under `images/` and extend the workflow matrix for each new image.
 
 ## License
 

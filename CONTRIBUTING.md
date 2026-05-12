@@ -1,6 +1,6 @@
-# Contribute to Code Vedas Template Repository
+# Contributing to Runner Images
 
-Thank you for expressing your interest in contributing to Code Vedas Template Repository. Your contributions are highly valued, and we appreciate your commitment to enhancing this project. Before initiating any contribution, we kindly request you to carefully review this document.
+Thank you for contributing to `runner-images`. This repository contains container images used by Code Vedas CI/CD pipelines. Before opening a change, review the repository structure in [README.md](README.md) and keep changes scoped to the relevant image directory under `images/`.
 
 Feel free to contribute through various avenues such as suggestions, comments, bug reports, or pull requests. To do so, please open an issue or a pull request directly in the repository.
 
@@ -8,7 +8,7 @@ Feel free to contribute through various avenues such as suggestions, comments, b
 
 There are several ways to become an active part of our community:
 
-1. [Create an issue](https://www.github.com/Code-Vedas/template-repo/issues/new/choose) in the repository.
+1. [Create an issue](https://www.github.com/Code-Vedas/runner-images/issues/new/choose) in the repository.
 2. Join our mailing list by sending an email to [Join mailing list](mailto:mailing-list@codevedas.com).
 3. Participate in our Slack channel by sending an email to [Join slack](mailto:join-slack@codevedas.com).
 4. Apply for project membership by sending an email to [Join project](mailto:join-project@codevedas.com). Following an initial screening, an invitation will be extended to you. This membership allows you to create issues, pull requests, and more, directly in the repository without the need to fork it.
@@ -18,21 +18,13 @@ There are several ways to become an active part of our community:
 
 We encourage contributions to both the codebase and documentation.
 
-This project comprises various modules/components, each housed in its dedicated folder/repository. For detailed information, please refer to the README.md file in each respective folder/repository.
+This repository can contain multiple runner images. Each image should have its own directory, build context, and documentation assumptions.
 
-The table below provides an overview of all possible modules/components:
+Current layout:
 
-| Module/Component | Description   | Related Language/Framework |
-| ---------------- | ------------- | -------------------------- |
-| GraphQL API      | GraphQL API   | CV-GraphQL                 |
-| Middleware       | Middleware    | Ruby on Rails              |
-| UI               | UI            | Flutter                    |
-| Mobile App       | Mobile App    | Flutter                    |
-| Desktop App      | Desktop App   | Flutter                    |
-| CLI              | CLI           | Ruby, Dart, Flutter        |
-| DevOps           | DevOps        | Terraform, AWS             |
-| Security         | Security      | Terraform, AWS             |
-| Documentation    | Documentation | Markdown                   |
+| Path                 | Purpose                          |
+| -------------------- | -------------------------------- |
+| `images/cpp-runner/` | C++ CI image with build tooling  |
 
 ## Improve Documentation
 
@@ -47,7 +39,7 @@ Both approaches are applicable to this file as well, following the outlined code
 
 ## Improve Code
 
-Your contributions to the codebase are appreciated. Refer to the README.md file in each folder/repository for detailed information.
+Your contributions to the codebase are appreciated. Keep image-specific changes inside that image's directory and update shared automation when the repository structure changes.
 
 Two ways to contribute to the code:
 
@@ -59,9 +51,9 @@ Two ways to contribute to the code:
 Before creating a pull request, ensure the following:
 
 1. Download and install the code on your local machine.
-2. Set up the development environment and verify that it is functioning as expected.
+2. Build the affected image locally and verify that it is functioning as expected.
 3. Create a branch for your changes, ensuring they work as intended. The branch name should follow the format `feature/<feature-name>`, `bugfix/<bug-name>`, `hotfix/<hotfix-name>`, etc.
-4. Run applicable test suites, confirming that all tests pass.
+4. Run applicable validation for the changed image or workflow.
 5. Ensure the code adheres to coding standards and best practices.
 6. Provide thorough documentation for the changes made.
 7. When creating a PR, select the correct template and complete all details. If the template is unavailable, create an issue in the repository for template addition. Failure to complete the template may result in the PR being closed without action.

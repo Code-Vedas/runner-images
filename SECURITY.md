@@ -10,7 +10,7 @@ Create an issue using 'Report a security vulnerability' template. We will try to
 
 ## Security Updates
 
-We will try to fix the vulnerability as soon as possible. We will release a new version with the fix and publish it to the marketplace. We will also update the changelog and release notes with the details of the vulnerability and the fix.
+We will try to fix the vulnerability as soon as possible. We will release updated image tags with the fix and document the change in the repository history and release notes when applicable.
 
 Following the semantic versioning as per [semver.org](https://semver.org/), we will release a new patch version for each major.minor version. For example, if the current version is 1.2.3, we will release a new version 1.2.4 with the fix. If the current version is 1.2.0, we will release a new version 1.2.1 with the fix.
 
@@ -31,7 +31,7 @@ Below is are the examples of released versions and the next version after the fi
 
 ## Responsible Disclosure
 
-We will try to fix the vulnerability as soon as possible. We will release a new version with the fix and publish it to the marketplace. We will also update the changelog and release notes with the details of the vulnerability and the fix.
+We will try to fix the vulnerability as soon as possible. We will release updated image tags with the fix and document the change in the repository history and release notes when applicable.
 
 ## Report abuse of the Code of Conduct
 
