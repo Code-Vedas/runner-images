@@ -6,16 +6,24 @@ Each image lives in its own directory under `images/` so the repository can grow
 
 ## Available Images
 
-### `cpp-runner`
+### `cpp-runner-gcc13`
 
 Path: `images/cpp-runner`
 
-This image is based on the [C++ Docker image](https://hub.docker.com/_/gcc) and adds:
+### `cpp-runner-gcc14`
+
+Path: `images/cpp-runner`
+
+### `cpp-runner-gcc15`
+
+Path: `images/cpp-runner`
+
+These images are based on the [C++ Docker image](https://hub.docker.com/_/gcc) and add:
 - [CMake](https://cmake.org/)
 - [Catch2](https://github.com/catchorg/Catch2)
 - [gcovr](https://gcovr.com/en/stable/)
 
-It is intended for CI/CD pipelines for C++ projects.
+They are intended for CI/CD pipelines for C++ projects, published separately for GCC 13, 14, and 15.
 
 ## Usage
 
@@ -26,35 +34,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/code-vedas/cpp-runner:latest
+      image: ghcr.io/code-vedas/cpp-runner-gcc13:latest
+      # or ghcr.io/code-vedas/cpp-runner-gcc14:latest
     steps:
 ```
 
 ## Development
 
-To build the C++ runner image locally:
+To build one of the C++ runner images locally:
 
 ```bash
-docker build -t cpp-runner images/cpp-runner
+docker build --build-arg GCC_VERSION=13 -t cpp-runner-gcc13 images/cpp-runner
+docker build --build-arg GCC_VERSION=14 -t cpp-runner-gcc14 images/cpp-runner
+docker build --build-arg GCC_VERSION=15 -t cpp-runner-gcc15 images/cpp-runner
 ```
 
 ### Building with specific versions
 
-The publish workflow fetches the latest releases of CMake and Catch2 for `cpp-runner`. For local builds, you can override versions with build args:
+The publish workflow fetches the latest releases of CMake and Catch2 for all three GCC variants. For local builds, you can override versions with build args:
 
 ```bash
 # Build with specific versions
 docker build \
+  --build-arg GCC_VERSION=13 \
   --build-arg CMAKE_VERSION=v3.29.0 \
   --build-arg CATCH2_VERSION=v3.7.1 \
-  -t cpp-runner \
+  -t cpp-runner-gcc13 \
   images/cpp-runner
 
 # Build with explicit default versions
 docker build \
+  --build-arg GCC_VERSION=15 \
   --build-arg CMAKE_VERSION=v4.0.3 \
   --build-arg CATCH2_VERSION=v3.8.1 \
-  -t cpp-runner \
+  -t cpp-runner-gcc15 \
   images/cpp-runner
 ```
 

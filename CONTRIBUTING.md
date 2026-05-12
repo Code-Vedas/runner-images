@@ -24,7 +24,7 @@ Current layout:
 
 | Path                 | Purpose                          |
 | -------------------- | -------------------------------- |
-| `images/cpp-runner/` | C++ CI image with build tooling  |
+| `images/cpp-runner/` | Shared build context for GCC 13, 14, and 15 C++ CI images |
 
 ## Improve Documentation
 

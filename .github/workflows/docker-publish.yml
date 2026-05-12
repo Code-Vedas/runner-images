@@ -25,8 +25,17 @@ jobs:
     strategy:
       matrix:
         include:
-          - image_name: cpp-runner
+          - image_name: cpp-runner-gcc13
             context: ./images/cpp-runner
+            gcc_version: "13"
+            latest_version_source: cpp
+          - image_name: cpp-runner-gcc14
+            context: ./images/cpp-runner
+            gcc_version: "14"
+            latest_version_source: cpp
+          - image_name: cpp-runner-gcc15
+            context: ./images/cpp-runner
+            gcc_version: "15"
             latest_version_source: cpp
     permissions:
       contents: read
@@ -101,6 +110,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
+            GCC_VERSION=${{ matrix.gcc_version }}
             CMAKE_VERSION=${{ steps.cmake_version.outputs.version }}
             CATCH2_VERSION=${{ steps.catch2_version.outputs.version }}
 
